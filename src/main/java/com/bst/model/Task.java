@@ -28,7 +28,8 @@ public class Task {
     
     private String submissionDescription;
     private String submissionFileName;
-
+    
+    @JsonIgnore
     @Column(columnDefinition = "LONGTEXT")
     private String submissionFileData;
 

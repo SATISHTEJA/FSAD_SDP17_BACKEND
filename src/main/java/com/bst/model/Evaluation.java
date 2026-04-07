@@ -2,6 +2,8 @@ package com.bst.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,12 +41,13 @@ public class Evaluation {
     private String feedback;
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
     private Task task;
     

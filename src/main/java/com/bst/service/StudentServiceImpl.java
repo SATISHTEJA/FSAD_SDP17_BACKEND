@@ -1,5 +1,6 @@
 package com.bst.service;
 
+import com.bst.dto.StudentDTO;
 import com.bst.model.Student;
 import com.bst.repo.StudentRepo;
 
@@ -75,5 +76,34 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return studentRepo.save(student);
+    }
+    
+    public StudentDTO getStudentDTO(Long id) {
+
+        Student s = studentRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not found"));
+
+        StudentDTO dto = new StudentDTO();
+
+        dto.setId(s.getId());
+        dto.setName(s.getName());
+        dto.setEmail(s.getEmail());
+
+        dto.setUniversity(s.getUniversity());
+        dto.setStream(s.getStream());
+        dto.setBranch(s.getBranch());
+
+        dto.setJoiningyear(s.getJoiningyear());
+        dto.setGraduatedyear(s.getGraduatedyear());
+
+        dto.setPhone(s.getPhone());
+        dto.setImage(s.getImage());
+
+        dto.setSkills(s.getSkills());
+        dto.setLinks(s.getLinks());
+
+        dto.setResume(s.getResume());
+
+        return dto;
     }
 }

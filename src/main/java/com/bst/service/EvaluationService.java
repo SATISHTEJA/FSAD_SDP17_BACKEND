@@ -1,7 +1,9 @@
 package com.bst.service;
 
+import com.bst.dto.EvaluationDTO;
 import com.bst.model.Evaluation;
 import com.bst.model.Student;
+import com.bst.model.Task;
 
 import java.util.List;
 
@@ -19,7 +21,11 @@ public interface EvaluationService {
     
     boolean exists(Long studentId, Long taskId);
     
+    List<EvaluationDTO> getEvaluationsByStudentDTO(Long studentId);
     
+    List<Task> findByInternshipId(Long internshipId);
+    
+	void deleteByTaskId(Long id);
 
     public void delete(Long id);
 

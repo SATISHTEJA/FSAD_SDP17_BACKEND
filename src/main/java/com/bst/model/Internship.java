@@ -4,6 +4,7 @@ package com.bst.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,14 +36,14 @@ public class Internship {
 
     private String skills;
     
-    
-
     @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
     
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"internships"})
     @JoinColumn(name = "employer_id")
     private Employer employer;
 }

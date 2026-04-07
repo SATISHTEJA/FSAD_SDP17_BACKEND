@@ -1,6 +1,8 @@
 package com.bst.service;
 
 import java.util.List;
+
+import com.bst.dto.StudentDTO;
 import com.bst.model.Student;
 
 public interface StudentService {
@@ -16,5 +18,7 @@ public interface StudentService {
     void deleteStudent(Long id);
 
 	Student updateStudent(Long id, Student student);
+	
+	public StudentDTO getStudentDTO(Long id);
 
 }

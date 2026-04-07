@@ -1,5 +1,6 @@
 package com.bst.controller;
 
+import com.bst.dto.EvaluationDTO;
 import com.bst.model.Evaluation;
 import com.bst.model.Task;
 import com.bst.repo.StudentRepo;
@@ -64,8 +65,8 @@ public class EvaluationController {
     }
 
     @GetMapping("/student/{studentId}")
-    public List<Evaluation> getEvaluationsByStudent(@PathVariable Long studentId) {
-        return evaluationService.getByStudent(studentId);
+    public List<EvaluationDTO> getEvaluationsByStudent(@PathVariable Long studentId) {
+        return evaluationService.getEvaluationsByStudentDTO(studentId);
     }
 
     @GetMapping("/task/{taskId}")

@@ -15,4 +15,8 @@ public interface EvaluationRepo extends JpaRepository<Evaluation, Long> {
     Optional<Evaluation> findByStudentIdAndTaskId(Long studentId, Long taskId);
     
     List<Evaluation> findByTaskId(Long taskId);
+
+
+
+	void deleteByTaskId(Long id);
 }

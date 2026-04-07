@@ -6,6 +6,7 @@ import com.bst.repo.EmployerRepo;
 import com.bst.service.InternshipService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,10 +45,14 @@ public class InternshipController {
         return internshipService.getInternshipById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteInternship(@PathVariable Long id) {
-        internshipService.deleteInternship(id);
-        return "Internship deleted successfully";
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteInternship(@PathVariable Long id) {
+        try {
+            internshipService.deleteInternship(id);
+            return ResponseEntity.ok("Deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/employer/{employerId}")

@@ -5,30 +5,31 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bst.dto.ApplicationDTO;
 import com.bst.model.Application;
 
 public interface ApplicationService {
 
-	Application apply(
-		    String fullName,
-		    String email,
-		    String role,
-		    String university,
-		    Double gpa,
-		    Long userId,
-		    Long internshipId,
-		    MultipartFile file
-		) throws IOException;
+    Application apply(
+        String fullName,
+        String email,
+        String role,
+        String university,
+        Double gpa,
+        Long userId,
+        Long internshipId,
+        MultipartFile file
+    ) throws IOException;
 
-    List<Application> getAllApplications();
-    
-    List<Application> getApplicationsByStudent(Long studentId);
+    List<ApplicationDTO> getApplicationsByStudent(Long studentId);
 
     List<Application> getApplicationsByEmployer(Long employerId);
-    
+
     List<Application> getApplicationsByInternship(Long internshipId);
 
-    Application updateStatus(Long applicationId, String status);
+    Application updateStatus(Long id, String status);
 
     void deleteApplication(Long id);
+
+	List<Application> getAllApplications();
 }

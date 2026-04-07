@@ -8,4 +8,6 @@ public interface TaskRepo extends JpaRepository<Task, Long> {
 
 	List<Task> findByStudentId(Long studentId);
 	List<Task> findByStudentIdAndInternshipId(Long studentId, Long internshipId);
+	void deleteByInternshipId(Long id);
+	List<Task> findByInternshipId(Long internshipId);
 }

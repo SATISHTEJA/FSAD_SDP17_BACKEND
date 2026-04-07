@@ -35,7 +35,8 @@ public class Application {
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "internship_id")
-    @JsonIgnoreProperties({"applications"}) // avoids loop
+    @JoinColumn(name = "internship_id", nullable = false)
+    @JsonIgnoreProperties({"applications"})
     private Internship internship;
+    
 }

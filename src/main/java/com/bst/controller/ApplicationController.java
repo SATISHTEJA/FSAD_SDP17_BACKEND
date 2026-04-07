@@ -1,5 +1,6 @@
 package com.bst.controller;
 
+import com.bst.dto.ApplicationDTO;
 import com.bst.model.Application;
 import com.bst.repo.ApplicationRepo;
 import com.bst.service.ApplicationService;
@@ -68,7 +69,7 @@ public class ApplicationController {
     }
     
     @GetMapping("/student/{studentId}")
-    public List<Application> getApplicationsByStudent(@PathVariable Long studentId) {
+    public List<ApplicationDTO> getApplicationsByStudent(@PathVariable Long studentId) {
         return applicationService.getApplicationsByStudent(studentId);
     }
     

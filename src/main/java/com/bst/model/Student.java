@@ -26,10 +26,12 @@ public class Student {
 
     private String password;
     
+    @JsonIgnore
     @Column(columnDefinition = "LONGTEXT")
     private String image;
 
     private String stream;
+    @Column()
     private String university;
     private String branch;
     @Min(2010)
@@ -37,10 +39,18 @@ public class Student {
     @Min(2012)
     private Integer graduatedyear;
     private String role = "student";
+    
+    private String phone;
+    private String resume;
 
+    @Column(columnDefinition = "LONGTEXT")
+    private String skills;
 
+    @Column(columnDefinition = "LONGTEXT")
+    private String links;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<Application> applications;
     
     @JsonIgnore

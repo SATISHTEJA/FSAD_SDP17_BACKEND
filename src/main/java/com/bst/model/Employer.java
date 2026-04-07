@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "employer")
 @Data
@@ -20,13 +23,30 @@ public class Employer {
 
     @Column(unique = true)
     private String email;
+    
+    @JsonIgnore
+    @Column(columnDefinition = "LONGTEXT")
+    private String image;
 
     private String password;
 
     private String location;
 
     private String website;
+    
+    @Column
+    private String industry;
+
+    @Column
+    private String companySize;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(columnDefinition = "TEXT")
+    private String hiringRoles;
 
     @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"internships"})
     private List<Internship> internships;
 }
