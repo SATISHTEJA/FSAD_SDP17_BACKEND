@@ -137,12 +137,62 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
     
     @Override
-    public List<Application> getApplicationsByInternship(Long internshipId) {
-        return applicationRepo.findByInternshipId(internshipId);
+    public List<ApplicationDTO> getApplicationsByInternship(Long internshipId) {
+
+        List<Application> apps = applicationRepo.findByInternshipId(internshipId);
+
+        return apps.stream().map(app -> {
+
+            ApplicationDTO dto = new ApplicationDTO();
+
+            dto.setId(app.getId());
+            dto.setStudentId(app.getStudent().getId());
+            dto.setFullName(app.getFullName());
+            dto.setEmail(app.getEmail());
+            dto.setGpa(app.getGpa());
+            dto.setStatus(app.getStatus().name());
+            dto.setUniversity(app.getUniversity());
+
+            return dto;
+
+        }).toList();
     }
 
 	@Override
 	public List<Application> getAllApplications() {
 		return applicationRepo.findAll();
+	}
+	
+	@Override
+	public List<ApplicationDTO> getApplicationsByEmployerDTO(Long employerId) {
+
+	    List<Application> apps = applicationRepo.findByInternshipEmployerId(employerId);
+
+	    return apps.stream().map(app -> {
+
+	        ApplicationDTO dto = new ApplicationDTO();
+
+	        dto.setId(app.getId());
+	        dto.setStatus(app.getStatus().name());
+	        dto.setRole(app.getRole());
+	        dto.setUniversity(app.getUniversity());
+	        dto.setAppliedDate(
+	            app.getAppliedDate() != null ? app.getAppliedDate().toString() : null
+	        );
+
+	        dto.setInternshipTitle(app.getInternship().getTitle());
+	        dto.setCompanyName(app.getInternship().getCompanyname());
+	        dto.setLocation(app.getInternship().getLocation());
+	        dto.setDuration(app.getInternship().getDuration());
+	        dto.setStipend(app.getInternship().getStipend());
+	        dto.setFullName(app.getFullName());
+	        dto.setEmail(app.getEmail());
+	        dto.setGpa(app.getGpa());
+	        dto.setResumePath(app.getResumePath());
+	        dto.setInternshipId(app.getInternship().getId());
+
+	        return dto;
+
+	    }).toList();
 	}
 }

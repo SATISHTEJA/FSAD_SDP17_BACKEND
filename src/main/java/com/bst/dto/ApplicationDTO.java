@@ -18,5 +18,10 @@ public class ApplicationDTO {
     private String location;
     private String duration;
     private String stipend;
-    
+    private String fullName;
+    private String email;
+    private Double gpa;
+    private String resumePath;
+    private Long internshipId;
+    private Long studentId;
 }

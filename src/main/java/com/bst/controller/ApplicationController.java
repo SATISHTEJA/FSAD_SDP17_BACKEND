@@ -74,12 +74,13 @@ public class ApplicationController {
     }
     
     @GetMapping("/employer/{employerId}")
-    public List<Application> getApplicationsByEmployer(@PathVariable Long employerId) {
-        return applicationService.getApplicationsByEmployer(employerId);
+    public List<ApplicationDTO> getApplicationsByEmployer(@PathVariable Long employerId) {
+        return applicationService.getApplicationsByEmployerDTO(employerId);
     }
     
     @GetMapping("/internship/{internshipId}")
-    public List<Application> getByInternship(@PathVariable Long internshipId) {
+    public List<ApplicationDTO> getByInternship(@PathVariable Long internshipId) {
         return applicationService.getApplicationsByInternship(internshipId);
     }
+    
 }

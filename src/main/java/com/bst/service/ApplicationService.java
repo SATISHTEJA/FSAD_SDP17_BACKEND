@@ -25,9 +25,11 @@ public interface ApplicationService {
 
     List<Application> getApplicationsByEmployer(Long employerId);
 
-    List<Application> getApplicationsByInternship(Long internshipId);
+    List<ApplicationDTO> getApplicationsByInternship(Long internshipId);
 
     Application updateStatus(Long id, String status);
+    
+    List<ApplicationDTO> getApplicationsByEmployerDTO(Long employerId);
 
     void deleteApplication(Long id);
 
