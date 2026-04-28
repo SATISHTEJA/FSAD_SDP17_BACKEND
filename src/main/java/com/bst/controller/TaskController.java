@@ -39,9 +39,9 @@ public class TaskController {
     }
 
     @GetMapping("/student/{studentId}/internship/{internshipId}")
-    public List<Task> getTasks(@PathVariable Long studentId,
-                              @PathVariable Long internshipId) {
-        return taskService.getTasksByStudentAndInternship(studentId, internshipId);
+    public List<TaskDTO> getTasks(@PathVariable Long studentId,
+                                  @PathVariable Long internshipId) {
+        return taskService.getTasksByStudentAndInternshipDTO(studentId, internshipId);
     }
     
     @GetMapping("/student/{studentId}")

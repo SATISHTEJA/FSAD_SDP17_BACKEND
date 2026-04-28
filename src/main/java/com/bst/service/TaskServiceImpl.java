@@ -81,4 +81,21 @@ public class TaskServiceImpl implements TaskService {
 
         }).toList();
     }
+    
+    @Override
+    public List<TaskDTO> getTasksByStudentAndInternshipDTO(Long studentId, Long internshipId) {
+        List<Task> tasks = taskRepo.findByStudentIdAndInternshipId(studentId, internshipId);
+        System.out.println("TASKS FOUND: " + tasks.size() + " for studentId=" + studentId + " internshipId=" + internshipId);
+        tasks.forEach(t -> System.out.println("  Task: id=" + t.getId() + " title=" + t.getTitle()));
+        return tasks.stream().map(task -> {
+            TaskDTO dto = new TaskDTO();
+            dto.setId(task.getId());
+            dto.setTitle(task.getTitle());
+            dto.setDescription(task.getDescription());
+            dto.setStatus(task.getStatus());
+            dto.setSubmissionDescription(task.getSubmissionDescription());
+            dto.setSubmissionFileName(task.getSubmissionFileName());
+            return dto;
+        }).toList();
+    }
 }

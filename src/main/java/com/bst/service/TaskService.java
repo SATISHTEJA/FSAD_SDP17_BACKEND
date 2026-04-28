@@ -16,4 +16,6 @@ public interface TaskService {
     void deleteByInternshipId(Long internshipId);
     
     List<TaskDTO> getTasksByStudentDTO(Long studentId);
+    
+    List<TaskDTO> getTasksByStudentAndInternshipDTO(Long studentId, Long internshipId);
 }

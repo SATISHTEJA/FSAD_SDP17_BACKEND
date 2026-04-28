@@ -190,6 +190,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	        dto.setGpa(app.getGpa());
 	        dto.setResumePath(app.getResumePath());
 	        dto.setInternshipId(app.getInternship().getId());
+	        dto.setStudentId(app.getStudent().getId());
 
 	        return dto;
 

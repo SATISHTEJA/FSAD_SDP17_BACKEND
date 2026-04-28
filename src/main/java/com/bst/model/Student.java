@@ -23,6 +23,8 @@ public class Student {
 
     @Column(unique = true)
     private String email;
+    @Column(name="verified")
+    private boolean verified = false;
 
     private String password;
     
@@ -56,5 +58,13 @@ public class Student {
     @JsonIgnore
     @OneToMany(mappedBy = "student")
     private List<Evaluation> evaluations;
+    
+    public boolean isVerified() {
+    	   return verified;
+    	}
+
+    	public void setVerified(boolean verified) {
+    	   this.verified = verified;
+    	}
 
 }

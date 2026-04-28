@@ -3,6 +3,7 @@ package com.bst.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bst.model.Employer;
@@ -14,9 +15,18 @@ public class EmployerServiceImpl implements EmployerService {
     @Autowired
     private EmployerRepo employerRepository;
 
-    @Override
-    public Employer register(Employer employer) {
-        return employerRepository.save(employer);
+    @Autowired
+    PasswordEncoder encoder;
+
+    public Employer register(
+    Employer employer
+    ){
+     employer.setPassword(
+       encoder.encode(
+        employer.getPassword()
+       )
+     );
+     return employerRepository.save(employer);
     }
 
     @Override

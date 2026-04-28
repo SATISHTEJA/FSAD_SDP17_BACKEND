@@ -23,6 +23,8 @@ public class Employer {
 
     @Column(unique = true)
     private String email;
+    @Column(name="verified")
+    private boolean verified = false;
     
     @JsonIgnore
     @Column(columnDefinition = "LONGTEXT")
@@ -49,4 +51,12 @@ public class Employer {
     @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"internships"})
     private List<Internship> internships;
+    
+    public boolean isVerified() {
+    	   return verified;
+    	}
+
+    	public void setVerified(boolean verified) {
+    	   this.verified = verified;
+    	}
 }
