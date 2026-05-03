@@ -13,7 +13,7 @@ public class EmailOtpService {
     public void sendOtpEmail(String toEmail, String otp) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("bst.remoteinternship@gmail.com");
+        message.setFrom("bablustudieszone@gmail.com");
         message.setTo(toEmail);
         message.setSubject("OTP Verification");
 
