@@ -92,7 +92,6 @@ public class AuthController {
 		return ResponseEntity.badRequest().body(Map.of("message", "Invalid role"));
 	}
 
-	// kept SAME as your original
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
 
@@ -144,7 +143,6 @@ public class AuthController {
 
 			emp.setPhonenumber(request.get("phonenumber"));
 
-			// encode employer password too
 			emp.setPassword(passwordEncoder.encode(request.get("password")));
 
 			emp.setLocation(request.get("location"));
