@@ -29,11 +29,13 @@ public class Internship {
 
     private String stipend;
 
+    @Column(length = 5000)
     private String description;
 
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String requirements;
 
+    @Column(length = 5000)
     private String skills;
     
     @JsonManagedReference
