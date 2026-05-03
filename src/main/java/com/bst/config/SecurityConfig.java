@@ -59,7 +59,8 @@ public class SecurityConfig {
             "http://localhost:3000",
             "http://localhost:5173",
             "http://localhost:5174",
-            "https://fsad-internship-30135.vercel.app"
+            "https://fsad-internship-30135.vercel.app",
+            "https://fsad-sdp-17-frontend.vercel.app"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
