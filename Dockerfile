@@ -1,14 +1,16 @@
-# Use official Eclipse Temurin (recommended)
-FROM eclipse-temurin:17-jdk
+# Stage 1: Build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
+# Stage 2: Run
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 
-# Copy everything
-COPY . .
+# FIX: copy exact jar name
+COPY --from=build /app/target/Internship-Backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Build using Maven Wrapper
-RUN chmod +x mvnw
-RUN ./mvnw clean package -DskipTests
+EXPOSE 8080
 
-# Run the app
-CMD ["java", "-jar", "target/*.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
