@@ -1,12 +1,14 @@
-# Use Java 17
-FROM openjdk:17-jdk-slim
+# Use official Eclipse Temurin (recommended)
+FROM eclipse-temurin:17-jdk
 
-# Copy project
 WORKDIR /app
+
+# Copy everything
 COPY . .
 
-# Build the project
+# Build using Maven Wrapper
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
-# Run the jar
+# Run the app
 CMD ["java", "-jar", "target/*.jar"]
