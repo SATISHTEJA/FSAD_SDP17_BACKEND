@@ -21,7 +21,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employers")
-@CrossOrigin(origins = "*")
 public class EmployerController {
 	
 	@Autowired

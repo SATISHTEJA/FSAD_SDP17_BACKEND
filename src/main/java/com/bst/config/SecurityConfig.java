@@ -18,55 +18,37 @@ import java.util.List;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private JwtFilter jwtFilter;
+	@Autowired
+	private JwtFilter jwtFilter;
 
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                    "/api/auth/**", "/emailotp/**",
-                    "/api/applications/**",
-                    "/api/internships/**",
-                    "/api/tasks/**",
-                    "/api/employers/**",
-                    "/api/evaluations/**",
-                    "/api/students/image/**",
-                    "/api/employers/image/**",
-                    "/uploads/**",
-                    "/swagger-ui/**", "/v3/api-docs/**"
-                ).permitAll()
-                .requestMatchers("/api/internships/create/**").hasRole("ADMIN")
-                .requestMatchers("/api/students/**").hasRole("STUDENT")
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
-    }
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/api/auth/**", "/emailotp/**", "/api/applications/**", "/api/tasks/**",
+								"/api/employers/**", "/api/evaluations/**", "/api/students/image/**",
+								"/api/employers/image/**", "/uploads/**", "/swagger-ui/**", "/v3/api-docs/**")
+						.permitAll().requestMatchers("/api/internships/create/**").hasRole("ADMIN")
+						.requestMatchers("/api/internships/**").permitAll().requestMatchers("/api/students/**")
+						.hasRole("STUDENT").anyRequest().authenticated())
+				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).build();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(
-            "http://localhost:3000",
-            "http://localhost:5173",
-            "http://localhost:5174",
-            "https://fsad-internship-30135.vercel.app",
-            "https://fsad-sdp-17-frontend.vercel.app"
-        ));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173", "http://localhost:5174",
+				"https://fsad-internship-30135.vercel.app", "https://fsad-sdp-17-frontend.vercel.app"));
+		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+		config.setAllowedHeaders(List.of("*"));
+		config.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", config);
+		return source;
+	}
 }

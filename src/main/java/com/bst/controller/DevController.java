@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/dev")//http://localhost:1305/api/dev/all-users?email=babludev@gmail.com&password=dev123
-@CrossOrigin(origins = "*")
 public class DevController {
 
     @Autowired

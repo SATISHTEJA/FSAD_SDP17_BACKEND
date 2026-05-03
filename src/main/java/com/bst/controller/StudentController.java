@@ -32,7 +32,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin(origins = "*")
 public class StudentController {
 
     @Autowired
